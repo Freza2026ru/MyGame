@@ -36,8 +36,9 @@
         :root {
             --ink: #140f0a;          /* тёплая тень от дерева */
             --deep: #1d160f;
-            --card: #241c14;
-            --edge: rgba(255, 214, 120, 0.14);
+            --card-top: #33271b;
+            --card-bottom: #271e15;
+            --edge: rgba(255, 216, 130, 0.28);
             --gold: #f7b62d;         /* золото с вывески */
             --gold-soft: #ffd873;
             --cream: #f6ead9;
@@ -66,10 +67,8 @@
 
         .banner {
             position: relative;
-            width: 100vw;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 28px;
+            /* отрицательные отступы = паддинг body, без 100vw и лишней прокрутки */
+            margin: 0 -20px 28px;
         }
 
         .banner h1 {
@@ -122,13 +121,13 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            background: var(--card);
+            background: linear-gradient(180deg, var(--card-top), var(--card-bottom));
             border: 1px solid var(--edge);
             border-radius: 18px;
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
         }
 
         .game__art {
@@ -197,21 +196,10 @@
             max-width: 900px;
             margin: 56px auto 0;
             padding-top: 24px;
-            border-top: 1px solid var(--edge);
+            border-top: 1px solid rgba(255, 216, 130, 0.14);
             text-align: center;
             color: var(--muted);
             font-size: 0.9rem;
-        }
-
-        footer a {
-            color: var(--gold);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-
-        footer a:hover,
-        footer a:focus-visible {
-            border-bottom-color: var(--gold);
         }
 
         @media (max-width: 560px) {
@@ -263,7 +251,7 @@
     </ul>
 
     <footer>
-        Делаю игры для души — <a href="https://t.me/koteCNT">@koteCNT</a>
+        Котэ Полосатэ
     </footer>
 
 </body>
