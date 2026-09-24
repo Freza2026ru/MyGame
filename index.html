@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>Игры полосатого кота — @koteCNT</title>
+
+    <!-- Превью для Telegram, VK, WhatsApp и т.д. -->
+    <meta name="description" content="Аркады в браузере.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Игры полосатого кота">
+    <meta property="og:title" content="Игры полосатого кота">
+    <meta property="og:description" content="Аркады в браузере.">
+    <meta property="og:image" content="https://freza2026ru.github.io/MyGame/preview.jpg">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:alt" content="Полосатый кот в очках на деревянной вывеске «Игры полосатого кота»">
+    <meta property="og:url" content="https://freza2026ru.github.io/MyGame/">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Игры полосатого кота">
+    <meta name="twitter:description" content="Аркады в браузере.">
+    <meta name="twitter:image" content="https://freza2026ru.github.io/MyGame/preview.jpg">
+    <meta name="theme-color" content="#140F0A">
+    <link rel="canonical" href="https://freza2026ru.github.io/MyGame/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #140f0a;          /* тёплая тень от дерева */
+            --deep: #1d160f;
+            --card: #241c14;
+            --edge: rgba(255, 214, 120, 0.14);
+            --gold: #f7b62d;         /* золото с вывески */
+            --gold-soft: #ffd873;
+            --cream: #f6ead9;
+            --muted: #a99883;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { -webkit-text-size-adjust: 100%; }
+
+        body {
+            margin: 0;
+            padding: 0 20px calc(48px + env(safe-area-inset-bottom, 0px));
+            background: var(--ink);
+            background-image:
+                radial-gradient(120% 70% at 50% 0%, #2a1f14 0%, rgba(42, 31, 20, 0) 62%);
+            background-repeat: no-repeat;
+            color: var(--cream);
+            font-family: 'Onest', 'Segoe UI', system-ui, sans-serif;
+            font-size: 17px;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- Шапка ---------- */
+
+        .banner {
+            position: relative;
+            width: 100vw;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 28px;
+        }
+
+        .banner h1 {
+            margin: 0;
+            font-size: 0;      /* текст остаётся для поисковиков и читалок */
+            line-height: 0;
+        }
+
+        .banner img {
+            display: block;
+            width: 100%;
+            max-width: 1100px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /* растворяем нижний край картинки в фоне страницы */
+        .banner::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 26%;
+            background: linear-gradient(to bottom, rgba(20, 15, 10, 0), var(--ink) 92%);
+            pointer-events: none;
+        }
+
+        .intro {
+            max-width: 46ch;
+            margin: 0 auto 44px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        /* ---------- Полка с играми ---------- */
+
+        .shelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        .game {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: var(--card);
+            border: 1px solid var(--edge);
+            border-radius: 18px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        .game__art {
+            display: block;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--deep);
+        }
+
+        .game__art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .game__body {
+            padding: 20px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .game__name {
+            font-family: 'Unbounded', 'Onest', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            transition: color 0.25s ease;
+        }
+
+        .game__note {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .game__genre {
+            margin-top: auto;
+            padding-top: 14px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .game:hover .game__art img,
+        .game:focus-visible .game__art img {
+            transform: scale(1.05);
+        }
+
+        .game:hover .game__name,
+        .game:focus-visible .game__name {
+            color: var(--gold-soft);
+        }
+
+        .game:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        /* ---------- Подвал ---------- */
+
+        footer {
+            max-width: 900px;
+            margin: 56px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid var(--edge);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            border-bottom-color: var(--gold);
+        }
+
+        @media (max-width: 560px) {
+            .intro { margin-bottom: 32px; }
+            .shelf { gap: 22px; }
+            .game__name { font-size: 1.15rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="banner">
+        <h1>Игры полосатого кота</h1>
+        <img src="preview.jpg" alt="Полосатый кот в очках на деревянной вывеске «Игры полосатого кота»">
+    </header>
+
+    <p class="intro">Открываются прямо в браузере — ничего скачивать не нужно.</p>
+
+    <ul class="shelf">
+        <li>
+            <a href="GlugGlug/" class="game">
+                <span class="game__art">
+                    <img src="Glug.jpg" alt="">
+                </span>
+                <span class="game__body">
+                    <span class="game__name">Glug Glug</span>
+                    <span class="game__note">Ныряй за сокровищами, берегись акул.</span>
+                    <span class="game__genre">Подводная аркада</span>
+                </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="SpaceInvaders/" class="game">
+                <span class="game__art">
+                    <img src="Inv.jpg" alt="">
+                </span>
+                <span class="game__body">
+                    <span class="game__name">Void Siege</span>
+                    <span class="game__note">Отбивай волны пришельцев, пока держатся укрытия.</span>
+                    <span class="game__genre">Космический шутер</span>
+                </span>
+            </a>
+        </li>
+    </ul>
+
+    <footer>
+        Делаю игры для души — <a href="https://t.me/koteCNT">@koteCNT</a>
+    </footer>
+
+</body>
+</html>
